@@ -1,56 +1,39 @@
-Spaceship ship;
-Star[] nightSky;
-boolean dPressed, aPressed, wPressed, sPressed, qPressed;
+class Spaceship extends Floater {
+  Spaceship() {
+    corners = 3;
+    myCenterX = width/2;
+    myCenterY = height/2;
+    xCorners = new int[]{-15, 15, -15};
+    yCorners = new int[]{10, 0, -10};
+    myColor = 255;
 
-public void setup() {
-  size(400, 400);
-  background(0);
-  nightSky = new Star[200];
-  ship = new Spaceship();
-  for(int i = 0; i < nightSky.length; i++){
-    nightSky[i] = new Star();
+    myXspeed = 0;
+    myYspeed = 0;
+    myPointDirection = 0;
   }
-}
-public void draw() {
-  background(0);
-  ship.show();
-  
-  for(int i = 0; i < nightSky.length; i++){
-    nightSky[i].show();
-  }
-  if (qPressed == true)
-    ship.hyperspace();
-}
 
-public void keyPressed() {
-  if (key == 'a') {
-    aPressed = true;
+  public void setCenterX(int newCenterX) {
+    myCenterX = newCenterX;
   }
-  if (key == 'd') {
-    dPressed = true;
+  public void setCenterY(int newCenterY) {
+    myCenterY = newCenterY;
   }
-  if (key == 'w') {
-    wPressed = true;
+  public void setPointDirection(int newPointDirection) {
+    myPointDirection = newPointDirection;
   }
-  if (key == 's') {
-    sPressed = true;
+  public double getCenterX() {
+    return myCenterX;
   }
-  if (key == 'q') {
-    qPressed = true;
+  public double getCenterY() {
+    return myCenterY;
   }
-}
-
-public void keyReleased() {
-  if (key == 'd') {
-    dPressed = false;
+  public double getPointDirection() {
+    return myPointDirection;
   }
-  if (key == 'a') {
-    aPressed = false;
+  public void setXspeed(int x) {
+    myXspeed = x;
   }
-  if (key == 'w') {
-    wPressed = false;
-  }
-  if (key == 's') {
-    sPressed = false;
+  public void setYspeed(int y) {
+    myYspeed = y;
   }
 }
