@@ -10,8 +10,8 @@ boolean gameOver;
 public void setup() {
   size(400, 400);
   background(0);
-  maxSpeed = 3;
-  acceleration = 0.1;
+  maxSpeed = 6;
+  acceleration = 0.2;
   numAsteroid = 4;
   gameOver = false;
   nightSky = new Star[250];
