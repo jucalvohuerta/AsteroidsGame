@@ -96,7 +96,7 @@ public void draw() {
   }
   ship.show();
   ship.move();
-  println(ship.getXspeed(), ship.getYspeed());
+
   if (debris.size() == 0)
     gameOver = true;
   if (gameOver) {
