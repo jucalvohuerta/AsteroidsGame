@@ -1,5 +1,6 @@
 Spaceship ship;
-Asteroid asteroid;
+int maxSpeed;
+double acceleration;
 int numAsteroid;
 ArrayList<Asteroid> debris;
 Star[] nightSky;
@@ -9,7 +10,9 @@ boolean gameOver;
 public void setup() {
   size(400, 400);
   background(0);
-  numAsteroid = 5;
+  maxSpeed = 3;
+  acceleration = 0.1;
+  numAsteroid = 4;
   gameOver = false;
   nightSky = new Star[250];
   debris = new ArrayList<Asteroid>();
@@ -27,58 +30,35 @@ public void draw() {
   if (gameOver == false) {
     for (int i = 0; i < nightSky.length; i++)
       nightSky[i].show();
-    if (wPressed) {
-      ship.accelerate(0.1);
-      if (ship.getXspeed() > 2)
-        ship.setXspeed(2);
-      if (ship.getXspeed() < -2)
-        ship.setXspeed(-2);
-
-      if (ship.getYspeed() > 2)
-        ship.setYspeed(2);
-      if (ship.getYspeed() < -2)
-        ship.setYspeed(-2);
-    }
-    if (sPressed) {
-      ship.accelerate(-0.2);
-      if (ship.getXspeed() > 2)
-        ship.setXspeed(2);
-      if (ship.getXspeed() < -2)
-        ship.setXspeed(-2);
-
-      if (ship.getYspeed() > 2)
-        ship.setYspeed(2);
-      if (ship.getYspeed() < -2)
-        ship.setYspeed(-2);
-    }
   }
   if (gameOver == true) {
     for (int i = 0; i < nightSky.length; i++)
       nightSky[i].party();
-    if (wPressed) {
-      ship.accelerate(0.1);
-      if (ship.getXspeed() > 5)
-        ship.setXspeed(5);
-      if (ship.getXspeed() < -5)
-        ship.setXspeed(-5);
+  }
 
-      if (ship.getYspeed() > 5)
-        ship.setYspeed(5);
-      if (ship.getYspeed() < -5)
-        ship.setYspeed(-5);
-    }
-    if (sPressed) {
-      ship.accelerate(-0.5);
-      if (ship.getXspeed() > 5)
-        ship.setXspeed(5);
-      if (ship.getXspeed() < -5)
-        ship.setXspeed(-5);
+  if (wPressed) {
+    ship.accelerate(acceleration);
+    if (ship.getXspeed() > maxSpeed)
+      ship.setXspeed(maxSpeed);
+    if (ship.getXspeed() < -maxSpeed)
+      ship.setXspeed(-maxSpeed);
 
-      if (ship.getYspeed() > 5)
-        ship.setYspeed(5);
-      if (ship.getYspeed() < -5)
-        ship.setYspeed(-5);
-    }
+    if (ship.getYspeed() > maxSpeed)
+      ship.setYspeed(maxSpeed);
+    if (ship.getYspeed() < -maxSpeed)
+      ship.setYspeed(-maxSpeed);
+  }
+  if (sPressed) {
+    ship.accelerate(-acceleration);
+    if (ship.getXspeed() > maxSpeed)
+      ship.setXspeed(maxSpeed);
+    if (ship.getXspeed() < -maxSpeed)
+      ship.setXspeed(-maxSpeed);
+
+    if (ship.getYspeed() > maxSpeed)
+      ship.setYspeed(maxSpeed);
+    if (ship.getYspeed() < -maxSpeed)
+      ship.setYspeed(-maxSpeed);
   }
   if (dPressed) {
     ship.turn(5);
@@ -99,15 +79,19 @@ public void draw() {
 
   if (debris.size() == 0)
     gameOver = true;
+
   if (gameOver) {
     textSize(60);
-    text("You win!!", 65, 150);
+    fill(255);
+    text("You win!!", 85, 150);
     textSize(25);
-    text("Press r to play again.", 75, 180);
+    text("Press r to play again.", 85, 180);
     if (rPressed) {
       for (int i = 0; i < numAsteroid; i++) {
         debris.add(i, new Asteroid());
       }
+      acceleration += 0.1;
+      maxSpeed += 3;
       gameOver = false;
       background(0);
     }
