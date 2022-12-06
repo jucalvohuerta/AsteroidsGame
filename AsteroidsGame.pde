@@ -4,15 +4,15 @@ double acceleration;
 int numAsteroid;
 ArrayList<Asteroid> debris;
 Star[] nightSky;
-boolean dPressed, aPressed, wPressed, sPressed, qPressed, rPressed;
+boolean dPressed, aPressed, wPressed, sPressed, qPressed, rPressed, pPressed;
 boolean gameOver;
 
 public void setup() {
   size(400, 400);
   background(0);
-  maxSpeed = 6;
-  acceleration = 0.2;
-  numAsteroid = 4;
+  maxSpeed = 3;
+  acceleration = 0.1;
+  numAsteroid = 6;
   gameOver = false;
   nightSky = new Star[250];
   debris = new ArrayList<Asteroid>();
@@ -66,9 +66,14 @@ public void draw() {
   if (aPressed) {
     ship.turn(-5);
   }
-
+  if (pPressed) {
+    for(int i = 0; i < debris.size(); i++){
+      debris.remove(i);
+    }
+  }
   for (int i = 0; i < debris.size(); i++) {
     debris.get(i).move();
+    debris.get(i).turn();
     debris.get(i).show();
     float d = dist((float)ship.getCenterX(), (float)ship.getCenterY(), (float)debris.get(i).getX(), (float)debris.get(i).getY());
     if (d < 20)
@@ -83,9 +88,9 @@ public void draw() {
   if (gameOver) {
     textSize(60);
     fill(255);
-    text("You win!!", 85, 150);
+    text("You win!!", 80, 150);
     textSize(25);
-    text("Press r to play again.", 85, 180);
+    text("Press r to play again.", 80, 180);
     if (rPressed) {
       for (int i = 0; i < numAsteroid; i++) {
         debris.add(i, new Asteroid());
@@ -124,6 +129,9 @@ public void keyPressed() {
   if (key == 'r') {
     rPressed = true;
   }
+  if (key == 'p') {
+    pPressed = true;
+  }
 }
 
 public void keyReleased() {
@@ -141,5 +149,8 @@ public void keyReleased() {
   }
   if (key == 'r') {
     rPressed = false;
+  }
+  if (key == 'p') {
+    pPressed = false;
   }
 }
