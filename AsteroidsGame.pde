@@ -10,7 +10,7 @@ boolean gameOver;
 public void setup() {
   size(400, 400);
   background(0);
-  maxSpeed = 3;
+  maxSpeed = 5;
   acceleration = 0.1;
   numAsteroid = 6;
   gameOver = false;
