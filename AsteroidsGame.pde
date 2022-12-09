@@ -119,9 +119,9 @@ public void draw() {
   if (gameOver) {
     textSize(60);
     fill(255);
-    text("You win!", 144, height/3, 212, 90);
+    text("You win!", 144, height/3);
     textSize(25);
-    text("Press r to play again.", 140, 70 + height/3, 220, 50);
+    text("Press r to play again.", 140, 70 + height/3);
     if (rPressed) {
       for (int i = 0; i < numAsteroid; i++) {
         debris.add(i, new Asteroid());
