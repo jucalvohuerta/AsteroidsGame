@@ -42,10 +42,10 @@ public void draw() {
   pPressed();
 
   asteroidMoveRemove(); // asteroid motion and removal w/ SHIP
-  asteroidBulletInteraction(); // bullet break asteroids 
+  asteroidBulletInteraction(); // bullet and asteroids go crack
 
   bulletMotion();
-  bulletDisappear(); // bullet removed when off screen
+  bulletDisappear();
 
   ship.show();
   ship.move();
